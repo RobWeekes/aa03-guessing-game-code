@@ -7,7 +7,20 @@ const rl = readline.createInterface({
     output: process.stdout
   });
 
-const secretNumber = 12;    // Later we will program this variable to be assigned at random
+// random number generator, from num1 to num2
+let randomInRange = function(num1, num2) {
+    let range = num2 - num1;
+    // console.log(range);
+    let random = num1 + Math.round(range * Math.random());
+    // console.log(random);
+    return random;
+}
+// randomInRange(15, 20);   // generates #'s from 15-20 incl.
+
+
+let secretNumber = randomInRange(0, 100);
+// console.log(secretNumber);
+// const secretNumber = 12;   // testing hard #
 
 function checkGuess(num) {
 
@@ -39,5 +52,5 @@ function askGuess() {
       });
 }
 
-
-askGuess();
+// start the game
+// askGuess();
