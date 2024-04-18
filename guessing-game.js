@@ -7,20 +7,19 @@ const rl = readline.createInterface({
     output: process.stdout
   });
 
+let secretNumber;
+
 // random number generator, from num1 to num2
 let randomInRange = function(num1, num2) {
     num1 = Number(num1);
     num2 = Number(num2);
     let range = num2 - num1;
-    console.log(num1);
-    console.log(num2);
-    console.log(range);
     let randNum = Math.random();
-    console.log(randNum);   // decimal between 0 and 1
+    //console.log(randNum);   // decimal between 0 and 1
     let random = num1 + Math.round(range * randNum);
-    console.log(typeof random);
-    let secretNumber = random;
-    console.log(secretNumber); // integer in user specified range
+    //console.log(typeof random);
+    secretNumber = random;
+    //console.log(secretNumber); // integer in user specified range
     return secretNumber;
 }
 // randomInRange(28, 68); // generates #'s from x to y incl. (for testing num generator)
@@ -65,18 +64,20 @@ function askGuess() {
 function askRange() {
     //asking user for min
     rl.question('Enter a min number: ', (minNum) => {
+        //minNum = Number(minNum);
         // if (typeof minNum == "number") {
+        //edgecase, account for users inputting non-numbers?
         if (minNum.length > 0) {
         }
 
         rl.question('Enter a max number: ', (maxNum) => {
+            //maxNum = Number(maxNum);
             // if (typeof maxNum == "number") {
             if (maxNum.length > 0) {
-                rl.close(); //closes interface
+                //rl.close(); //closes interface
                 console.log(`I'm thinking of a number between ${minNum} and ${maxNum}...`);
-                console.log(minNum);
-                console.log(maxNum);
                 randomInRange(minNum, maxNum);
+                askGuess();
             }
         });
     });
