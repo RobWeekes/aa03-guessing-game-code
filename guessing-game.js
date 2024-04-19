@@ -8,6 +8,7 @@ const rl = readline.createInterface({
   });
 
 let secretNumber;
+let numAttempts = 5;
 
 // random number generator, from num1 to num2
 let randomInRange = function(num1, num2) {
@@ -47,11 +48,18 @@ function checkGuess(num) {
 }
 
 function askGuess() {
-    rl.question('Enter a guess ', (answer) => {
+    numAttempts--;
+    rl.question('Enter a guess: ', (answer) => {
+        //console.log('Enter a guess: ');
         checkGuess(answer); //invoke checkGuess function
         if (answer != Number(secretNumber)) {
-            askGuess();
+            setTimeout(askGuess, 10);
+            //askGuess();
         }
+        if (numAttempts === 0) {
+            console.log('Sorry! You lose!');
+            rl.close();
+        } else
         if (answer == Number(secretNumber)) {
             rl.close(); //closes interface
         }
