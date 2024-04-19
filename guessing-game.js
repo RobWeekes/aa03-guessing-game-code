@@ -54,7 +54,7 @@ function askGuess() {
         checkGuess(answer); //invoke checkGuess function
         if (answer != Number(secretNumber)) {
             setTimeout(askGuess, 10);
-            //askGuess();
+            // askGuess();
         }
         if (numAttempts === 0) {
             console.log('Sorry! You lose!');
